@@ -891,5 +891,476 @@ If you can explain:
 * Datagram vs Virtual circuit
 * FDM vs TDM vs WDM
 * Why Internet uses packet switching
+Perfect catch — you’re right, **Ethernet & Wireless Technologies are a core part of Chapter 6**, and **Chapter 7 (IP + Subnetting)** is where **A grades are won or lost**.
+What follows is **fully exam-ready**, **deep**, **clear**, and **complete**, all in **one single reply**, exactly as you asked.
+
+Take this slowly once. Tomorrow you’ll compress it.
+
+---
+
+# 🔷 CHAPTER 6 (CONTINUED):
+
+## **ETHERNET & WIRELESS TECHNOLOGIES**
+
+*(Introduction to Ethernet – exactly how examiners expect it)*
+
+---
+
+## 1️⃣ WHAT IS ETHERNET?
+
+### Definition (EXAM-PERFECT)
+
+> **Ethernet is a LAN technology that defines rules for framing, addressing, error detection, and medium access control at the Data Link and Physical layers.**
+
+📌 Ethernet mainly operates at:
+
+* **Physical Layer**
+* **Data Link Layer (MAC sublayer)**
+
+---
+
+## 2️⃣ ETHERNET FRAME FORMAT (VERY IMPORTANT)
+
+An Ethernet frame has:
+
+| Field           | Purpose              |
+| --------------- | -------------------- |
+| Preamble        | Synchronization      |
+| Destination MAC | Receiver             |
+| Source MAC      | Sender               |
+| Type / Length   | Upper-layer protocol |
+| Data            | Payload              |
+| FCS (CRC)       | Error detection      |
+
+📌 **MAC Address = 48 bits (6 bytes)**
+📌 Written in hexadecimal
+
+⚠️ **Exam trap:**
+
+* Ethernet uses **MAC addresses**, NOT IP addresses
+
+---
+
+## 3️⃣ MEDIUM ACCESS IN ETHERNET — CSMA/CD
+
+### Why needed?
+
+Ethernet originally used **shared medium**, so collisions could occur.
+
+---
+
+### CSMA/CD Explained (VERY COMMON QUESTION)
+
+**CSMA/CD = Carrier Sense Multiple Access with Collision Detection**
+
+Steps:
+
+1. **Carrier Sense** → Check if medium is idle
+2. **Multiple Access** → Many devices share medium
+3. **Collision Detection** → Detect collision while transmitting
+4. **Backoff Algorithm** → Wait random time and retry
+
+📌 Used in **wired Ethernet (half-duplex)**
+
+⚠️ Modern Ethernet:
+
+* Uses **switches**
+* Full-duplex
+* **No collisions**
+* CSMA/CD becomes irrelevant
+
+---
+
+## 4️⃣ TYPES OF ETHERNET (DON’T MEMORIZE SPEEDS, UNDERSTAND IDEA)
+
+| Type             | Medium         |
+| ---------------- | -------------- |
+| 10Base-T         | Twisted Pair   |
+| Fast Ethernet    | Higher speed   |
+| Gigabit Ethernet | Fiber / Copper |
+
+📌 Examiner usually tests **concept**, not numbers.
+
+---
+
+## 5️⃣ WIRELESS TECHNOLOGIES (INTRODUCTION)
+
+---
+
+### What makes wireless different?
+
+* No physical cable
+* Shared air medium
+* More interference
+* More security challenges
+
+---
+
+## 6️⃣ WIRELESS MULTIPLE ACCESS — CSMA/CA
+
+### Why NOT CSMA/CD?
+
+Wireless:
+
+* Cannot detect collision easily
+* Hidden node problem
+
+---
+
+### CSMA/CA Explained
+
+**CSMA/CA = Carrier Sense Multiple Access with Collision Avoidance**
+
+Key ideas:
+
+* Try to **avoid collisions**, not detect
+* Uses:
+
+  * RTS (Request to Send)
+  * CTS (Clear to Send)
+* ACK after successful transmission
+
+📌 Used in **Wi-Fi (IEEE 802.11)**
+
+---
+
+## 7️⃣ ETHERNET vs WIRELESS (EXAM TABLE)
+
+| Ethernet          | Wireless          |
+| ----------------- | ----------------- |
+| CSMA/CD           | CSMA/CA           |
+| Wired medium      | Wireless medium   |
+| Less interference | More interference |
+| More secure       | Less secure       |
+
+---
+
+# 🔷 CHAPTER 7:
+
+## **INTRODUCTION TO IP ADDRESSING & SUBNETTING**
+
+🔥 *THIS CHAPTER WINS MARKS*
+
+---
+
+## PART A: IP ADDRESSING (FOUNDATION)
+
+---
+
+## 1️⃣ WHAT IS AN IP ADDRESS?
+
+### Definition (EXAM-GOLD)
+
+> **An IP address is a logical address assigned to a device to uniquely identify it on a network and enable routing.**
+
+📌 Works at **Network Layer**
+
+---
+
+## 2️⃣ IPv4 ADDRESS STRUCTURE
+
+* 32 bits
+* Divided into **4 octets**
+* Each octet = 8 bits
+* Written in **decimal notation**
+
+📌 Example:
+
+```
+192.168.1.10
+```
+
+---
+
+## 3️⃣ NETWORK PART vs HOST PART
+
+Every IP address has:
+
+* **Network ID** → identifies network
+* **Host ID** → identifies device
+
+The split is defined by:
+
+* **Subnet Mask**
+
+---
+
+## 4️⃣ CLASSES OF IPv4 (EXAM FAVORITE)
+
+| Class | Range   | Default Mask  |
+| ----- | ------- | ------------- |
+| A     | 1–126   | 255.0.0.0     |
+| B     | 128–191 | 255.255.0.0   |
+| C     | 192–223 | 255.255.255.0 |
+
+📌 Class D → Multicast
+📌 Class E → Experimental
+
+⚠️ **Exam trap:**
+127.x.x.x = Loopback (NOT usable)
+
+---
+
+## 5️⃣ PRIVATE IP ADDRESSES (VERY IMPORTANT)
+
+| Class | Range                         |
+| ----- | ----------------------------- |
+| A     | 10.0.0.0 – 10.255.255.255     |
+| B     | 172.16.0.0 – 172.31.255.255   |
+| C     | 192.168.0.0 – 192.168.255.255 |
+
+Used in:
+
+* LANs
+* Not routable on Internet
+
+---
+
+## PART B: SUBNETTING (THE BIG SCORER)
+
+---
+
+## 6️⃣ WHY SUBNETTING EXISTS
+
+Problems without subnetting:
+
+* Large broadcast domains
+* Wasted IPs
+* Poor performance
+
+Subnetting:
+
+* Divides a network into **smaller networks**
+* Improves efficiency and security
+
+---
+
+## 7️⃣ SUBNET MASK — THE KEY
+
+### Definition
+
+> A subnet mask defines which bits belong to network and which belong to host.
+
+Example:
+
+```
+IP:    192.168.1.10
+Mask:  255.255.255.0
+```
+
+Binary:
+
+```
+11111111.11111111.11111111.00000000
+```
+
+---
+
+## 8️⃣ STEP-BY-STEP SUBNETTING METHOD (EXAM FORMULA)
+
+### STEP 1: Identify Class
+
+Example:
+
+```
+192.168.1.0 → Class C
+```
+
+---
+
+### STEP 2: Determine Requirement
+
+* Number of subnets?
+  OR
+* Number of hosts?
+
+---
+
+### STEP 3: Borrow Bits
+
+Formula:
+
+* **Subnets = 2ⁿ**
+* **Hosts = 2ʰ − 2**
+
+---
+
+## 9️⃣ WORKED EXAMPLE (VERY IMPORTANT)
+
+### Question:
+
+Subnet **192.168.1.0** into **4 subnets**
+
+---
+
+### Step 1: Class C → 8 host bits
+
+### Step 2: Need 4 subnets
+
+```
+2² = 4 → borrow 2 bits
+```
+
+---
+
+### Step 3: New Subnet Mask
+
+```
+11111111.11111111.11111111.11000000
+= 255.255.255.192
+```
+
+---
+
+### Step 4: Block Size
+
+```
+256 − 192 = 64
+```
+
+---
+
+### Subnets:
+
+| Subnet | Network       | Broadcast | Host Range |
+| ------ | ------------- | --------- | ---------- |
+| 1      | 192.168.1.0   | .63       | .1–.62     |
+| 2      | 192.168.1.64  | .127      | .65–.126   |
+| 3      | 192.168.1.128 | .191      | .129–.190  |
+| 4      | 192.168.1.192 | .255      | .193–.254  |
+
+📌 Hosts per subnet = **62**
+
+---
+
+## 🔟 COMMON SUBNETTING TRAPS
+
+❌ Forgetting −2 hosts
+❌ Wrong block size
+❌ Mixing network & broadcast
+❌ Wrong class assumption
+
+---
+
+## 1️⃣1️⃣ CIDR NOTATION (VERY COMMON)
+
+Example:
+
+```
+255.255.255.192 = /26
+```
+
+Meaning:
+
+* 26 bits for network
+* 6 bits for hosts
+
+---
+
+## 1️⃣2️⃣ MCQs (WITH ANSWERS & REASONING)
+
+---
+
+### MCQ 1
+
+Which layer does IP operate on?
+
+A. Data Link
+B. Transport
+C. Network
+D. Application
+
+✅ **Answer: C**
+Reason: IP provides logical addressing and routing → Network layer
+
+---
+
+### MCQ 2
+
+How many hosts are possible in a /27 subnet?
+
+Hosts bits = 5
+
+```
+2⁵ − 2 = 30
+```
+
+✅ **Answer: 30**
+
+---
+
+### MCQ 3
+
+Which protocol is used for collision avoidance?
+
+A. CSMA/CD
+B. CSMA/CA
+C. ARP
+D. ICMP
+
+✅ **Answer: B**
+Reason: Wireless cannot detect collision
+
+---
+
+### MCQ 4
+
+What is the block size of 255.255.255.240?
+
+```
+256 − 240 = 16
+```
+
+✅ **Answer: 16**
+
+---
+
+### MCQ 5
+
+Which address cannot be assigned to a host?
+
+A. Network address
+B. First host
+C. Last host
+D. Any private IP
+
+✅ **Answer: A**
+Reason: Network ID identifies subnet
+
+---
+
+## 1️⃣3️⃣ HOW EXAMINERS AWARD FULL MARKS
+
+For subnetting:
+
+1. Class identification
+2. Formula usage
+3. Mask derivation
+4. Correct host ranges
+
+Even if final answer is wrong, **steps earn marks**.
+
+---
+
+## ✅ FINAL CONFIDENCE CHECK
+
+You are **A-grade ready** if you can:
+
+* Explain Ethernet & CSMA/CD vs CSMA/CA
+* Identify IP classes quickly
+* Calculate block size
+* Subnet Class C confidently
+* Answer MCQs with reasoning
+
+---
+
+### NEXT (Tomorrow Morning)
+
+* 1-page OSI + Switching + IP cheat sheet
+* 10 exam-style subnetting problems
+* Rapid revision strategy before 2 PM
+
+You are studying **the right way**, not just cramming.
+This is how As are earned.
 
 
